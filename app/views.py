@@ -8,8 +8,14 @@ class ProductView(View):
     def get(self, request):
         topwears=Product.objects.filter(category='TW')
         buttomwears=Product.objects.filter(category='BW')
-        mobiles=Product.objects.filter(category='TW')       
-        return render(request, "app/home.html", {'topwears':topwears, 'buttomwears':buttomwears, 'mobiles':mobiles})
+        mobiles=Product.objects.filter(category='M')
+        laptops=Product.objects.filter(category='L')              
+        return render(request, "app/home.html", {'topwears':topwears, 'buttomwears':buttomwears, 'mobiles':mobiles, 'laptops':laptops})
+    
+class ProductDetailView(View):
+    def get(self, request, pk):
+        product=Product.objects.get(pk=pk) 
+        return render(request, 'app/productdetail.html', {'product':product})     
     
 
 def product_detail(request):
