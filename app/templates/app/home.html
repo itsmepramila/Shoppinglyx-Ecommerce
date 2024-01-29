@@ -97,7 +97,7 @@
  <!-- Slider 2 -->
  <div class="owl-carousel" id="slider2">
   {% for tp in topwears %}
-  <a href="{% url 'product-detail' tp.id %}" class="btn"><div class="item"><img src="{{ tp.product_image.url }}" alt="" height="200px"><span class="fw-bold">{{ tp.title }}</span><br><span class="fs-5">Rs. {{ tp.selling_price }}</span></div></a>
+  <a href="{% url 'product-detail' tp.id %}" class="btn"><div class="item"><img src="{{ tp.product_image.url }}" alt="" height="200px"><span class="fw-bold">{{ tp.title }}</span><br><span class="fs-5">Rs. {{ tp.selling_price }} ID. {{ tp.id }}</span></div></a>
   {% endfor %}
  </div>
 </div>
