@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
 from django.contrib.auth.models import User
 
 class CustomerRegistrationForm(UserCreationForm):
@@ -12,3 +12,11 @@ class CustomerRegistrationForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
         labels = {'email': 'Email'}
         widgets = {'username': forms.TextInput(attrs={'class': 'form-control'})}
+
+
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm, UsernameField
+
+class LoginForm(AuthenticationForm):
+    username = UsernameField(widget=forms.TextInput(attrs={'autofocus': True, 'class': 'form-control'}))
+    password = forms.CharField(label=_("Password"), strip=False, widget=forms.PasswordInput(attrs={'autofocus': True, 'class': 'form-control'}))

@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from app.models import Customer, Product, Cart, OrderPlaced
 from app.forms import CustomerRegistrationForm
+from django.contrib import messages
 # def home(request):
 #  return render(request, 'app/home.html')
 
@@ -51,19 +52,25 @@ def mobile(request, data=None):
 def login(request):
  return render(request, 'app/login.html')
 
+
+
 # def customerregistration(request):
 #  return render(request, 'app/customerregistration.html')
 
 class CustomerRegistrationView(View):
     def get(self, request):
-        form=CustomerRegistrationForm
-        return render(request, 'app/customerregistration.html', {'form':form})
+        form = CustomerRegistrationForm()  # Instantiate the form
+        return render(request, 'app/customerregistration.html', {'form': form})
     
     def post(self, request):
-        form=CustomerRegistrationForm(request.POST)
+        form = CustomerRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-        return render(request, 'app/customerregistration.html', {'form':form})  
+            messages.success(request, "Successfully submitted the query")
+            return redirect('customerregistration')  # Redirect to a success page or any desired URL
+        else:
+            messages.error(request, "Error in the form submission. Please correct the errors.")
+        return render(request, 'app/customerregistration.html', {'form': form})
     
 
 def checkout(request):
