@@ -3,6 +3,7 @@ from django.views import View
 from app.models import Customer, Product, Cart, OrderPlaced
 from app.forms import CustomerRegistrationForm
 from django.contrib import messages
+from django.contrib.auth.models import User
 # def home(request):
 #  return render(request, 'app/home.html')
 
@@ -51,6 +52,7 @@ def mobile(request, data=None):
 
 def login(request):
  return render(request, 'app/login.html')
+
 
 
 
